@@ -84,6 +84,14 @@ One-time setup, in order:
 For local writing without deploying anything, open the admin on the dev server in Chrome or
 Edge and pick "Work with Local Repository": it edits the files on disk directly.
 
+## Contact form
+
+The homepage form sends through Web3Forms (free, no account). To activate it: go to
+web3forms.com, enter gcharalampide@gmail.com, copy the access key from the email they send,
+and replace `WEB3FORMS_ACCESS_KEY` in `src/pages/index.astro` (the hidden input in the
+contact form). Until then the form falls back to opening the visitor's email app with the
+message prefilled, so nothing is broken while the key is missing.
+
 ## Where things live
 
 - Homepage copy: `src/pages/index.astro` (hero, Now, projects, about, contact)
