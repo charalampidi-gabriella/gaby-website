@@ -1,0 +1,54 @@
+# Sveltia CMS configuration.
+# Sign in with a GitHub fine-grained access token (see README, Admin section).
+# To use "Sign In with GitHub" instead, deploy sveltia-cms-auth and add:
+#   base_url: https://<your-worker>.workers.dev
+backend:
+  name: github
+  repo: charalampidi-gabriella/gaby-website
+  branch: main
+
+media_folder: public/notes
+public_folder: /notes
+
+site_url: https://gabycharalampidi.com
+
+collections:
+  - name: notes
+    label: Notes
+    folder: src/content/notes
+    create: true
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}} ({{date}})'
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Title, widget: string }
+      - name: date
+        label: Date
+        widget: datetime
+        format: 'YYYY-MM-DD'
+        time_format: false
+      - name: type
+        label: Type
+        widget: select
+        options: [article, video]
+        default: article
+        hint: Video notes show the player at the top and use the YouTube thumbnail everywhere.
+      - name: video
+        label: YouTube link
+        widget: string
+        required: false
+        hint: Any watch, share, or embed URL. Leave empty for articles.
+      - name: image
+        label: Cover image
+        widget: image
+        required: false
+        hint: Shown above the article, on the notes list, and on share cards.
+      - name: description
+        label: Description
+        widget: string
+        required: false
+        hint: One line. This is the text on the notes list and the LinkedIn share card.
+      - { name: draft, label: Draft, widget: boolean, default: false }
+      - { name: body, label: Body, widget: markdown }

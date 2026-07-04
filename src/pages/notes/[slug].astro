@@ -1,0 +1,111 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { youtubeEmbed, readingTime, noteThumb } from '../../lib/notes';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes', ({ data }) => !data.draft);
+  return notes.map((note) => ({
+    params: { slug: note.id },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+
+const mins = note.data.type === 'article' ? readingTime(note.body) : 0;
+---
+
+<Layout
+  title={`${note.data.title} · Gaby Charalampidi`}
+  description={note.data.description}
+  current="notes"
+  ogImage={noteThumb(note.data, 'hq') ?? undefined}
+  ogType="article"
+>
+  <article>
+    <header class="note-header">
+      <p class="eyebrow">
+        <time datetime={note.data.date.toISOString()}>{fmt(note.data.date)}</time>
+        {mins > 0 && <span> &middot; {mins} min read</span>}
+      </p>
+      <h1>{note.data.title}</h1>
+    </header>
+
+    {
+      note.data.video && (
+        <div class="video-frame">
+          <iframe
+            src={youtubeEmbed(note.data.video)}
+            title={note.data.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          />
+        </div>
+      )
+    }
+
+    {
+      !note.data.video && note.data.image && (
+        <img class="cover" src={note.data.image} alt="" />
+      )
+    }
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <p class="back"><a href="/notes">&larr; All notes</a></p>
+  </article>
+</Layout>
+
+<style>
+  .note-header {
+    margin-top: 3.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .note-header h1 {
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    max-width: 24ch;
+  }
+
+  .video-frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .cover {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    margin-bottom: 2rem;
+    display: block;
+  }
+
+  .back {
+    margin-top: 3rem;
+    font-size: 0.92rem;
+  }
+
+  .back a {
+    text-decoration: none;
+    color: var(--muted);
+  }
+</style>

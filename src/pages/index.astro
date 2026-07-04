@@ -1,0 +1,399 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const latest = notes.slice(0, 3);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+
+const stats = [
+  { n: '3', label: 'facilities' },
+  { n: '50', label: 'staff' },
+  { n: '363', label: 'days open a year' },
+  { n: '245', label: 'ITF world ranking, juniors' },
+];
+
+const projects = [
+  {
+    name: 'Attendance escalation engine',
+    stack: 'Apps Script',
+    what: 'Encodes the attendance policy: log a call-out and it counts that coach’s rolling history, picks the escalation step, and emails management the exact next action.',
+  },
+  {
+    name: 'Inventory system',
+    stack: 'Express · LibSQL',
+    what: 'Stock counts, transfers, and low-stock alerts across three tennis centers.',
+  },
+  {
+    name: 'Compliance tracker',
+    stack: 'Sheets · Apps Script',
+    what: '50 staff, five certifications, zero manual entry. A weekly digest emails whoever is about to lapse.',
+  },
+  {
+    name: 'Club software extensions',
+    stack: 'Chrome · Apps Script',
+    what: 'Two Chrome extensions that patch what our club platform is missing: payroll recalculation across all locations and live coach notes on the court sheets.',
+  },
+  {
+    name: 'rippnertennis.com',
+    stack: 'Next.js · Cloudflare',
+    what: 'The three-facility marketing site, rebuilt from WordPress. 33 routes, a gated admin dashboard, a live racket inventory browser.',
+  },
+  {
+    name: 'Internal tools portal',
+    stack: 'Cloudflare Pages',
+    what: 'One home for the operation’s single-purpose tools: coach scheduling, staffing dashboards built on the Connecteam API, and whatever the next problem needs.',
+  },
+];
+---
+
+<Layout title="Gaby Charalampidi" current="home">
+  <section class="hero">
+    <svg class="court" viewBox="0 0 260 240" aria-hidden="true" fill="none">
+      <rect x="30" y="10" width="200" height="220" stroke="currentColor" />
+      <line x1="30" y1="65" x2="230" y2="65" stroke="currentColor" />
+      <line x1="30" y1="175" x2="230" y2="175" stroke="currentColor" />
+      <line x1="130" y1="65" x2="130" y2="175" stroke="currentColor" />
+      <line x1="8" y1="120" x2="252" y2="120" stroke="currentColor" stroke-width="2" />
+    </svg>
+    <p class="eyebrow">Gaby Charalampidi &middot; Austin, TX</p>
+    <h1>
+      I <em>run</em> tennis facilities and <em>build</em> the software that runs them.
+    </h1>
+    <p class="lede">
+      COO at <a href="https://rippnertennis.com">Rippner Tennis</a>. When the operation needs a
+      tool that does not exist, I build it myself.
+    </p>
+    <div class="court-rule" aria-hidden="true"></div>
+    <dl class="stats">
+      {
+        stats.map((s) => (
+          <div class="stat">
+            <dd>{s.n}</dd>
+            <dt>{s.label}</dt>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="section" id="now">
+    <h2 class="label">Now</h2>
+    <ul class="now-list">
+      <li>
+        <span class="now-title">Platform migration.</span> Moving all three facilities to a new
+        club management system, go-live this August. Setup, data, pricing, automation, training:
+        all mine.
+      </li>
+      <li>
+        <span class="now-title">Building in public.</span> Writing and recording
+        <a href="/notes">notes</a> on operations and the software behind them.
+      </li>
+      <li>
+        <span class="now-title">Korta.</span> A founding member of
+        <a href="https://playkorta.com">Korta</a>, a tennis matchmaking platform launching in
+        Austin.
+      </li>
+    </ul>
+  </section>
+
+  <section class="section" id="work">
+    <h2 class="label">Things I've built</h2>
+    <p class="kicker">
+      Every tool here exists because something broke, cost hours, or lived in one person's head.
+    </p>
+    <ol class="projects">
+      {
+        projects.map((p, i) => (
+          <li>
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{p.name}</h3>
+            <p>{p.what}</p>
+            <span class="stack">{p.stack}</span>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="section" id="about">
+    <h2 class="label">Before this</h2>
+    <p class="bio">
+      ITF juniors, the Greek National Team, then Division I tennis at Nevada on a full athletic
+      scholarship, with a computer science and engineering degree earned along the way. This job
+      is the overlap of the two things I know best.
+    </p>
+  </section>
+
+  {
+    latest.length > 0 && (
+      <section class="section" id="notes">
+        <h2 class="label">Latest notes</h2>
+        <ul class="note-list">
+          {latest.map((note) => (
+            <li>
+              <a href={`/notes/${note.id}`}>{note.data.title}</a>
+              <span class="note-meta">
+                {note.data.type === 'video' && <span class="tag">Video</span>}
+                <time datetime={note.data.date.toISOString()}>{fmt(note.data.date)}</time>
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p class="all-notes">
+          <a href="/notes">All notes &rarr;</a>
+        </p>
+      </section>
+    )
+  }
+
+  <section class="section" id="contact">
+    <h2 class="label">Contact</h2>
+    <p class="contact-line">Happy to connect.</p>
+    <p class="muted">
+      I like meeting people working in sports, AI, or automation, and anyone curious about what
+      I'm building:
+    </p>
+    <p class="email">
+      <a href="mailto:gcharalampide@gmail.com">gcharalampide@gmail.com</a>
+    </p>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    position: relative;
+    margin-top: 3.5rem;
+  }
+
+  .court {
+    position: absolute;
+    top: -1.5rem;
+    right: -3rem;
+    width: 230px;
+    color: var(--line);
+    z-index: -1;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 6.5vw, 3.4rem);
+    max-width: 20ch;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .lede {
+    margin-top: 1.3rem;
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 32rem;
+  }
+
+  /* baseline with center mark */
+  .court-rule {
+    position: relative;
+    height: 1px;
+    background: var(--ink);
+    margin: 2.8rem 0 0;
+  }
+
+  .court-rule::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 1px;
+    height: 9px;
+    background: var(--ink);
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 1.6rem 0 0;
+  }
+
+  .stat dd {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .stat dt {
+    margin-top: 0.35rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .now-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .now-list li {
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+  }
+
+  .now-list li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .now-title {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .kicker {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--ink);
+    max-width: 30rem;
+    margin: 0 0 2rem;
+  }
+
+  .projects {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+
+  .projects li {
+    background: var(--bg);
+    padding: 1.3rem 1.4rem 1.5rem;
+    transition: background 140ms ease;
+  }
+
+  .projects li:hover {
+    background: #1c1f26;
+  }
+
+  .num {
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    color: var(--accent);
+  }
+
+  .projects h3 {
+    font-size: 1.25rem;
+    margin: 0.4rem 0 0.45rem;
+  }
+
+  .projects p {
+    margin: 0;
+    font-size: 0.93rem;
+    color: var(--muted);
+  }
+
+  .stack {
+    display: block;
+    margin-top: 0.9rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .bio {
+    font-size: 1.05rem;
+    max-width: 36rem;
+    margin: 0;
+  }
+
+  .note-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .note-list li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.7rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .note-list li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .note-list a {
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .note-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    font-size: 0.85rem;
+    color: var(--faint);
+    white-space: nowrap;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.1rem 0.55rem;
+  }
+
+  .all-notes {
+    margin-top: 1rem;
+    font-size: 0.92rem;
+  }
+
+  .contact-line {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin: 0 0 0.8rem;
+  }
+
+  .email {
+    margin-top: 1.4rem;
+  }
+
+  .email a {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+    text-decoration-color: var(--accent);
+  }
+
+  @media (max-width: 560px) {
+    .court {
+      display: none;
+    }
+
+    .stats {
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 1.4rem;
+    }
+
+    .projects {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
