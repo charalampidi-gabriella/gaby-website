@@ -31,8 +31,8 @@ const fmt = (d: Date) =>
             <a class="note-card" href={`/notes/${note.id}`}>
               <div class="note-text">
                 <span class="note-meta">
+                  {note.data.topic && <span class="topic-chip">{note.data.topic}</span>}
                   <time datetime={note.data.date.toISOString()}>{fmt(note.data.date)}</time>
-                  {note.data.topic && <span class="tag">{note.data.topic}</span>}
                   {note.data.type === 'video' && <span class="tag">Video</span>}
                   {mins > 0 && <span>{mins} min read</span>}
                 </span>

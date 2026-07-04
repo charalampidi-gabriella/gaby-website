@@ -142,6 +142,20 @@ a:hover {
   margin-bottom: 1.5rem;
 }
 
+/* Topic chip: mist-tinted, squared. Distinct from the outlined pills. */
+.topic-chip {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  background: rgba(167, 182, 201, 0.16);
+  color: var(--accent);
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 /* Editorial section label: small caps */
 h2.label {
   font-family: var(--sans);
