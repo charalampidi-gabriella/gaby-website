@@ -105,6 +105,50 @@ const projects = [
     </ol>
   </section>
 
+  <section class="section" id="path">
+    <h2 class="label">The path</h2>
+    <ol class="timeline">
+      <li>
+        <p class="tl-era">Greece</p>
+        <h3>Competitive tennis</h3>
+        <p>ITF juniors, a world ranking of 245, and the Greek National Team.</p>
+      </li>
+      <li>
+        <p class="tl-era">Reno, NV</p>
+        <h3>Engineering</h3>
+        <p>
+          Division I tennis at Nevada on a full athletic scholarship, with a B.S. in Computer
+          Science and Engineering earned along the way.
+        </p>
+      </li>
+      <li>
+        <p class="tl-era">Austin, TX</p>
+        <h3>Rippner Tennis</h3>
+        <p>
+          Branch manager to operations manager to COO in fourteen months. Three facilities, 50
+          staff, 363 days a year.
+        </p>
+      </li>
+      <li class="current">
+        <p class="tl-era">Today</p>
+        <h3>The migration</h3>
+        <p>
+          Moving all three facilities to a new club management platform, go-live this August.
+          Documented in the <a href="/notes">notes</a> as it happens.
+        </p>
+      </li>
+      <li class="future">
+        <p class="tl-era">Next</p>
+        <h3>What's coming</h3>
+        <p>
+          <a href="https://playkorta.com">Korta</a>, a tennis matchmaking platform I'm a
+          founding member of, launches in Austin. More of the operation automated. All of it
+          posted here.
+        </p>
+      </li>
+    </ol>
+  </section>
+
   <section class="section" id="contact">
     <h2 class="label">Contact</h2>
     <p class="contact-line">Happy to connect.</p>
@@ -284,6 +328,84 @@ const projects = [
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--faint);
+  }
+
+  .timeline {
+    list-style: none;
+    padding: 0 0 0 1.8rem;
+    margin: 0;
+    position: relative;
+  }
+
+  /* the vertical baseline */
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    width: 1px;
+    background: var(--line);
+  }
+
+  .timeline li {
+    position: relative;
+    padding-bottom: 2.2rem;
+  }
+
+  .timeline li:last-child {
+    padding-bottom: 0;
+  }
+
+  /* tick node crossing the baseline, same mark as the section dividers */
+  .timeline li::before {
+    content: '';
+    position: absolute;
+    left: -1.8rem;
+    top: 0.5rem;
+    width: 11px;
+    height: 1px;
+    background: var(--ink);
+    transform: translateX(-5px);
+  }
+
+  .tl-era {
+    margin: 0 0 0.3rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .timeline h3 {
+    font-size: 1.25rem;
+    margin: 0 0 0.4rem;
+  }
+
+  .timeline p:not(.tl-era) {
+    margin: 0;
+    color: var(--muted);
+    max-width: 32rem;
+  }
+
+  .timeline li.current::before {
+    background: var(--accent);
+    height: 3px;
+    top: 0.45rem;
+  }
+
+  .timeline li.current .tl-era {
+    color: var(--accent);
+  }
+
+  .timeline li.future::before {
+    background: var(--faint);
+  }
+
+  .timeline li.future h3,
+  .timeline li.future p:not(.tl-era) {
+    opacity: 0.75;
   }
 
   .note-list {
