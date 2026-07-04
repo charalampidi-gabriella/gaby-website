@@ -120,7 +120,9 @@ a:hover {
 }
 
 .section {
-  margin-top: 4.5rem;
+  margin-top: 4rem;
+  padding-top: 2.75rem;
+  border-top: 1px solid var(--line);
 }
 
 .section > h2 {
