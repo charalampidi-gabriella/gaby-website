@@ -189,23 +189,53 @@ const projects = [
 </Layout>
 
 <script>
-  // The hero court sketch lags the page slightly on scroll. Kept faint on purpose.
+  // Scroll effects, all skipped for reduced-motion users:
+  // - the hero court sketch lags the page slightly
+  // - the timeline baseline draws itself in as you scroll through it
   const court = document.querySelector<SVGElement>('.court');
+  const timeline = document.querySelector<HTMLElement>('.timeline');
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (court && !reduceMotion) {
+
+  if (!reduceMotion && (court || timeline)) {
+    const update = () => {
+      if (court) court.style.transform = `translateY(${window.scrollY * 0.12}px)`;
+      if (timeline) {
+        const rect = timeline.getBoundingClientRect();
+        const focal = window.innerHeight * 0.7;
+        const drawn = Math.min(Math.max(focal - rect.top, 0), rect.height);
+        timeline.style.setProperty('--tl-progress', `${drawn}px`);
+      }
+      ticking = false;
+    };
     let ticking = false;
     addEventListener(
       'scroll',
       () => {
         if (ticking) return;
         ticking = true;
-        requestAnimationFrame(() => {
-          court.style.transform = `translateY(${window.scrollY * 0.12}px)`;
-          ticking = false;
-        });
+        requestAnimationFrame(update);
       },
       { passive: true }
     );
+    update();
+  }
+
+  // Timeline entries fade up as they enter the viewport.
+  if (timeline && !reduceMotion) {
+    const items = [...timeline.querySelectorAll('li')];
+    items.forEach((li) => li.classList.add('tl-hidden'));
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('tl-hidden');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -12% 0px' }
+    );
+    items.forEach((li) => io.observe(li));
   }
 
   // Contact form: submits through Web3Forms. Until an access key is set,
@@ -348,9 +378,27 @@ const projects = [
     background: var(--line);
   }
 
+  /* the drawn-in portion of the baseline, height driven by scroll */
+  .timeline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    width: 1px;
+    height: var(--tl-progress, 0px);
+    max-height: calc(100% - 0.8rem);
+    background: var(--accent);
+  }
+
   .timeline li {
     position: relative;
     padding-bottom: 2.2rem;
+    transition: opacity 600ms ease, transform 600ms ease;
+  }
+
+  .timeline li.tl-hidden {
+    opacity: 0;
+    transform: translateY(14px);
   }
 
   .timeline li:last-child {
