@@ -63,54 +63,6 @@ const projects = [
     </p>
   </section>
 
-  <section class="section" id="now">
-    <h2 class="label">Now</h2>
-    <ul class="now-list">
-      <li>
-        <span class="now-title">Platform migration.</span> Moving all three facilities to a new
-        club management system, go-live this August. Setup, data, pricing, automation, training:
-        all mine.
-      </li>
-      <li>
-        <span class="now-title">Building in public.</span> Writing and recording
-        <a href="/notes">notes</a> on operations and the software behind them.
-      </li>
-      <li>
-        <span class="now-title">Korta.</span> A founding member of
-        <a href="https://playkorta.com">Korta</a>, a tennis matchmaking platform launching in
-        Austin.
-      </li>
-    </ul>
-  </section>
-
-  <section class="section" id="work">
-    <h2 class="label">Things I've built</h2>
-    <p class="kicker">
-      Every tool here exists because something broke, cost hours, or lived in one person's head.
-    </p>
-    <ol class="projects">
-      {
-        projects.map((p, i) => (
-          <li>
-            <span class="num">{String(i + 1).padStart(2, '0')}</span>
-            <h3>{p.name}</h3>
-            <p>{p.what}</p>
-            <span class="stack">{p.stack}</span>
-          </li>
-        ))
-      }
-    </ol>
-  </section>
-
-  <section class="section" id="about">
-    <h2 class="label">Before this</h2>
-    <p class="bio">
-      ITF juniors, the Greek National Team, then Division I tennis at Nevada on a full athletic
-      scholarship, with a computer science and engineering degree earned along the way. This job
-      is the overlap of the two things I know best.
-    </p>
-  </section>
-
   {
     latest.length > 0 && (
       <section class="section" id="notes">
@@ -133,6 +85,25 @@ const projects = [
       </section>
     )
   }
+
+  <section class="section" id="work">
+    <h2 class="label">Things I've built</h2>
+    <p class="kicker">
+      Every tool here exists because something broke, cost hours, or lived in one person's head.
+    </p>
+    <ol class="projects">
+      {
+        projects.map((p, i) => (
+          <li>
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{p.name}</h3>
+            <p>{p.what}</p>
+            <span class="stack">{p.stack}</span>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
 
   <section class="section" id="contact">
     <h2 class="label">Contact</h2>
@@ -259,26 +230,6 @@ const projects = [
     max-width: 32rem;
   }
 
-  .now-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .now-list li {
-    padding: 0.85rem 0;
-    color: var(--muted);
-  }
-
-  .now-list li + li {
-    border-top: 1px solid var(--line);
-  }
-
-  .now-title {
-    color: var(--ink);
-    font-weight: 500;
-  }
-
   .kicker {
     font-family: var(--serif);
     font-style: italic;
@@ -333,12 +284,6 @@ const projects = [
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--faint);
-  }
-
-  .bio {
-    font-size: 1.05rem;
-    max-width: 36rem;
-    margin: 0;
   }
 
   .note-list {
