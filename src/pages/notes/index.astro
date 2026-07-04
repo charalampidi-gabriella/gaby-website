@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import { noteThumb, readingTime } from '../../lib/notes';
+import { noteThumb, readingTime, TOPICS } from '../../lib/notes';
 
 const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -16,17 +16,23 @@ const fmt = (d: Date) =>
     <h1>Notes</h1>
   </section>
 
+  <div class="topic-filter" role="group" aria-label="Filter notes by topic">
+    <button class="active" data-topic="">All</button>
+    {TOPICS.map((t) => <button data-topic={t}>{t}</button>)}
+  </div>
+
   <ul class="note-list">
     {
       notes.map((note) => {
         const thumb = noteThumb(note.data);
         const mins = note.data.type === 'article' ? readingTime(note.body) : 0;
         return (
-          <li>
+          <li data-topic={note.data.topic ?? ''}>
             <a class="note-card" href={`/notes/${note.id}`}>
               <div class="note-text">
                 <span class="note-meta">
                   <time datetime={note.data.date.toISOString()}>{fmt(note.data.date)}</time>
+                  {note.data.topic && <span class="tag">{note.data.topic}</span>}
                   {note.data.type === 'video' && <span class="tag">Video</span>}
                   {mins > 0 && <span>{mins} min read</span>}
                 </span>
@@ -52,8 +58,28 @@ const fmt = (d: Date) =>
     }
   </ul>
 
+  <p class="muted empty-topic" hidden>Nothing under this topic yet.</p>
   {notes.length === 0 && <p class="muted">Nothing here yet. First note coming soon.</p>}
 </Layout>
+
+<script>
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('.topic-filter button')];
+  const items = [...document.querySelectorAll<HTMLLIElement>('.note-list li')];
+  const empty = document.querySelector<HTMLElement>('.empty-topic')!;
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      buttons.forEach((b) => b.classList.toggle('active', b === btn));
+      const topic = btn.dataset.topic || '';
+      let shown = 0;
+      items.forEach((li) => {
+        const show = !topic || li.dataset.topic === topic;
+        li.hidden = !show;
+        if (show) shown++;
+      });
+      empty.hidden = shown > 0;
+    });
+  });
+</script>
 
 <style>
   .hero {
@@ -70,10 +96,40 @@ const fmt = (d: Date) =>
     max-width: 34rem;
   }
 
+  .topic-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 2.2rem;
+  }
+
+  .topic-filter button {
+    padding: 0.35rem 1rem;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: color 120ms ease, border-color 120ms ease;
+  }
+
+  .topic-filter button:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .topic-filter button.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
   .note-list {
     list-style: none;
     padding: 0;
-    margin: 3rem 0 0;
+    margin: 2rem 0 0;
   }
 
   .note-list li {

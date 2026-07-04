@@ -31,6 +31,7 @@ const mins = note.data.type === 'article' ? readingTime(note.body) : 0;
     <header class="note-header">
       <p class="eyebrow">
         <time datetime={note.data.date.toISOString()}>{fmt(note.data.date)}</time>
+        {note.data.topic && <span> &middot; {note.data.topic}</span>}
         {mins > 0 && <span> &middot; {mins} min read</span>}
       </p>
       <h1>{note.data.title}</h1>

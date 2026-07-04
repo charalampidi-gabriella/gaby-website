@@ -35,6 +35,12 @@ collections:
         options: [article, video]
         default: article
         hint: Video notes show the player at the top and use the YouTube thumbnail everywhere.
+      - name: topic
+        label: Topic
+        widget: select
+        options: [Leadership, AI, Coaching]
+        required: false
+        hint: The theme this note files under. Shown as a tag and used by the notes-page filter.
       - name: video
         label: YouTube link
         widget: string
