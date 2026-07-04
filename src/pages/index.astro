@@ -203,9 +203,7 @@ const projects = [
       const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
       if (data.botcheck) return;
       if (!data.access_key || data.access_key === 'WEB3FORMS_ACCESS_KEY') {
-        const subject = encodeURIComponent(`Note from ${data.name || 'your site'}`);
-        const body = encodeURIComponent(`${data.message || ''}\n\nReply to: ${data.email || ''}`);
-        location.href = `mailto:gcharalampide@gmail.com?subject=${subject}&body=${body}`;
+        status.textContent = 'The form is not connected yet. Message me on LinkedIn instead.';
         return;
       }
       button.disabled = true;
