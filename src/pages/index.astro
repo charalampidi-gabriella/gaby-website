@@ -265,12 +265,11 @@ const projects = [
 
   .now-list li {
     padding: 0.85rem 0;
-    border-top: 1px solid var(--line);
     color: var(--muted);
   }
 
-  .now-list li:last-child {
-    border-bottom: 1px solid var(--line);
+  .now-list li + li {
+    border-top: 1px solid var(--line);
   }
 
   .now-title {
@@ -352,11 +351,10 @@ const projects = [
     justify-content: space-between;
     gap: 1rem;
     padding: 0.7rem 0;
-    border-top: 1px solid var(--line);
   }
 
-  .note-list li:last-child {
-    border-bottom: 1px solid var(--line);
+  .note-list li + li {
+    border-top: 1px solid var(--line);
   }
 
   .note-list a {
