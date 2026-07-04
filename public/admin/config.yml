@@ -10,6 +10,9 @@ backend:
 media_folder: public/notes
 public_folder: /notes
 
+output:
+  omit_empty_optional_fields: true
+
 site_url: https://gabycharalampidi.com
 
 collections:
