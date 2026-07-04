@@ -12,34 +12,34 @@ const fmt = (d: Date) =>
 
 const projects = [
   {
-    name: 'Attendance escalation engine',
+    name: 'Escalation engine',
     stack: 'Apps Script',
-    what: 'Encodes the attendance policy: log a call-out and it counts that coach’s rolling history, picks the escalation step, and emails management the exact next action.',
+    what: 'The attendance policy, running as code.',
   },
   {
     name: 'Inventory system',
     stack: 'Express · LibSQL',
-    what: 'Stock counts, transfers, and low-stock alerts across three tennis centers.',
+    what: 'Stock, transfers, and alerts across three sites.',
   },
   {
     name: 'Compliance tracker',
     stack: 'Sheets · Apps Script',
-    what: '50 staff, five certifications, zero manual entry. A weekly digest emails whoever is about to lapse.',
+    what: '50 staff certifications, zero manual entry.',
   },
   {
-    name: 'Club software extensions',
-    stack: 'Chrome · Apps Script',
-    what: 'Two Chrome extensions that patch what our club platform is missing: payroll recalculation across all locations and live coach notes on the court sheets.',
+    name: 'Club extensions',
+    stack: 'Chrome',
+    what: 'Payroll recalculation and live coach notes.',
   },
   {
     name: 'rippnertennis.com',
     stack: 'Next.js · Cloudflare',
-    what: 'The three-facility marketing site, rebuilt from WordPress. 33 routes, a gated admin dashboard, a live racket inventory browser.',
+    what: 'The marketing site, rebuilt from WordPress.',
   },
   {
-    name: 'Internal tools portal',
+    name: 'Tools portal',
     stack: 'Cloudflare Pages',
-    what: 'One home for the operation’s single-purpose tools: coach scheduling, staffing dashboards built on the Connecteam API, and whatever the next problem needs.',
+    what: 'Schedulers and dashboards, one home.',
   },
 ];
 ---
@@ -318,7 +318,7 @@ const projects = [
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1px;
     background: var(--line);
     border: 1px solid var(--line);
@@ -326,7 +326,7 @@ const projects = [
 
   .projects li {
     background: var(--bg);
-    padding: 1.3rem 1.4rem 1.5rem;
+    padding: 1rem 1.1rem 1.1rem;
     transition: background 140ms ease;
   }
 
@@ -335,26 +335,26 @@ const projects = [
   }
 
   .num {
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     letter-spacing: 0.09em;
     color: var(--accent);
   }
 
   .projects h3 {
-    font-size: 1.25rem;
-    margin: 0.4rem 0 0.45rem;
+    font-size: 1.02rem;
+    margin: 0.35rem 0 0.3rem;
   }
 
   .projects p {
     margin: 0;
-    font-size: 0.93rem;
+    font-size: 0.83rem;
     color: var(--muted);
   }
 
   .stack {
     display: block;
-    margin-top: 0.9rem;
-    font-size: 0.72rem;
+    margin-top: 0.7rem;
+    font-size: 0.66rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--faint);
