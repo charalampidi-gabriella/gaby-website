@@ -164,6 +164,27 @@ const projects = [
   </section>
 </Layout>
 
+<script>
+  // The hero court sketch lags the page slightly on scroll. Kept faint on purpose.
+  const court = document.querySelector<SVGElement>('.court');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (court && !reduceMotion) {
+    let ticking = false;
+    addEventListener(
+      'scroll',
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          court.style.transform = `translateY(${window.scrollY * 0.12}px)`;
+          ticking = false;
+        });
+      },
+      { passive: true }
+    );
+  }
+</script>
+
 <style>
   .hero {
     position: relative;
