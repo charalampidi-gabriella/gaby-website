@@ -92,4 +92,4 @@ Edge and pick "Work with Local Repository": it edits the files on disk directly.
 
 ## Deploy (Cloudflare Pages)
 
-Same flow as rippnertennis.com. Connect the repo in the Cloudflare dashboard with build command `npm run build` and output directory `dist`, root directory `site` if the repo root is the parent folder. Set the production domain when ready. The `site` value in `astro.config.mjs` currently assumes gabycharalampidi.com; change it if the domain differs.
+Same flow as rippnertennis.com. Connect the repo in the Cloudflare dashboard with build command `npm run build` and output directory `dist`. Leave the root directory empty (the repo root is the site itself). Set the production domain when ready. The `site` value in `astro.config.mjs` currently assumes gabycharalampidi.com; change it if the domain differs.
