@@ -10,13 +10,6 @@ const latest = notes.slice(0, 3);
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 
-const stats = [
-  { n: '3', label: 'facilities' },
-  { n: '50', label: 'staff' },
-  { n: '363', label: 'days open a year' },
-  { n: '245', label: 'ITF world ranking, juniors' },
-];
-
 const projects = [
   {
     name: 'Attendance escalation engine',
@@ -68,17 +61,6 @@ const projects = [
       COO at <a href="https://rippnertennis.com">Rippner Tennis</a>. When the operation needs a
       tool that does not exist, I build it myself.
     </p>
-    <div class="court-rule" aria-hidden="true"></div>
-    <dl class="stats">
-      {
-        stats.map((s) => (
-          <div class="stat">
-            <dd>{s.n}</dd>
-            <dt>{s.label}</dt>
-          </div>
-        ))
-      }
-    </dl>
   </section>
 
   <section class="section" id="now">
@@ -276,46 +258,6 @@ const projects = [
     font-size: 1.1rem;
     color: var(--muted);
     max-width: 32rem;
-  }
-
-  /* baseline with center mark */
-  .court-rule {
-    position: relative;
-    height: 1px;
-    background: var(--ink);
-    margin: 2.8rem 0 0;
-  }
-
-  .court-rule::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    width: 1px;
-    height: 9px;
-    background: var(--ink);
-  }
-
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin: 1.6rem 0 0;
-  }
-
-  .stat dd {
-    margin: 0;
-    font-family: var(--serif);
-    font-size: 2.5rem;
-    line-height: 1;
-  }
-
-  .stat dt {
-    margin-top: 0.35rem;
-    font-size: 0.72rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--muted);
   }
 
   .now-list {
@@ -545,11 +487,6 @@ const projects = [
   @media (max-width: 560px) {
     .court {
       display: none;
-    }
-
-    .stats {
-      grid-template-columns: repeat(2, 1fr);
-      row-gap: 1.4rem;
     }
 
     .projects {
