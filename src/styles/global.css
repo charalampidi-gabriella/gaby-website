@@ -4,6 +4,7 @@
   --muted: #d9d3c7;
   --faint: rgba(240, 235, 224, 0.45);
   --line: rgba(240, 235, 224, 0.14);
+  --rule: rgba(240, 235, 224, 0.3);
   --accent: #a7b6c9;
   --serif: 'Newsreader', Georgia, serif;
   --sans: 'Inter', -apple-system, 'Segoe UI', sans-serif;
@@ -123,7 +124,7 @@ a:hover {
   position: relative;
   margin-top: 4rem;
   padding-top: 2.75rem;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--rule);
 }
 
 /* center tick on the section rule, echoing the hero baseline */
@@ -134,7 +135,7 @@ a:hover {
   left: 50%;
   width: 1px;
   height: 8px;
-  background: var(--line);
+  background: var(--rule);
 }
 
 .section > h2 {
