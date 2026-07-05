@@ -22,9 +22,9 @@ The framework I use for this is HEARD, popularized by Disney.
 
 ## The sequence is doing all the work
 
-The intuitive order is Resolve first (fix the immediate problem), then maybe Diagnose if there is time, with empathy showing up as an afterthought along the way. HEARD flips that. People need to feel heard before they can hear you. You cannot skip ahead of them.
+The intuitive order is Resolve first (fix the immediate problem), then maybe Diagnose if there is time, with empathy showing up as an afterthought. HEARD flips that. People need to feel heard before they can hear you, so you cannot skip ahead of them.
 
-What HEARD does in practice is separate the customer conversation from the operational fix. The conversation is H, E, A, R. Everything that follows (the person, the process, the training) is D. Different problems, different clocks. Most operators try to compress them into one conversation, which usually means the customer walks away feeling like they were the diagnostic, not the customer.
+In practice, HEARD separates the customer conversation from the operational fix. H, E, A, R is the conversation. Everything that follows (the person, the process, the training) is D. Different problems, different clocks. Most operators try to compress them into one conversation, which usually means the customer walks away feeling like they were the diagnostic, not the customer.
 
 ## The step that compounds
 

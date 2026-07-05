@@ -64,7 +64,7 @@ const projects = [
     </h1>
     <p class="lede">
       COO at <a href="https://rippnertennis.com">Rippner Tennis</a>, a three-location tennis
-      operation in Austin.
+      operation in&nbsp;Austin.
     </p>
   </section>
 
@@ -452,6 +452,7 @@ const projects = [
   }
 
   .note-list li {
+    position: relative;
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -470,6 +471,14 @@ const projects = [
   .note-list a {
     text-decoration: none;
     font-weight: 500;
+  }
+
+  /* Stretch the title link to cover the whole card so the full box is clickable */
+  .note-list a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
   }
 
   .note-meta {
