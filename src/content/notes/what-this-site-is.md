@@ -1,6 +1,7 @@
 ---
 title: What this site is
 date: 2026-07-03
+image: /notes/slide1.png
 description: Why an operations person is posting her work in public.
 ---
 
