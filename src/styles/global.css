@@ -175,37 +175,80 @@ h2.label {
 /* Prose (note bodies) */
 
 .prose {
-  font-size: 1.02rem;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+/* Editorial lead: the opening claim reads bigger, in the serif. */
+.prose > p:first-child {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  line-height: 1.45;
+  color: var(--ink);
+  margin-bottom: 1.6rem;
+}
+
+.prose strong {
+  color: var(--ink);
+  font-weight: 600;
 }
 
 .prose h2 {
-  font-size: 1.45rem;
-  margin: 2.2rem 0 0.8rem;
+  font-size: 1.5rem;
+  margin: 2.8rem 0 0.9rem;
+}
+
+/* Small accent tick above each section heading: quiet rhythm down the page. */
+.prose h2::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0.55;
+  margin-bottom: 1.1rem;
+  border-radius: 1px;
 }
 
 .prose h3 {
   font-size: 1.15rem;
-  margin: 1.8rem 0 0.6rem;
+  margin: 2rem 0 0.6rem;
 }
 
 .prose p {
-  margin: 0 0 1.1rem;
+  margin: 0 0 1.2rem;
 }
 
 .prose ul, .prose ol {
-  padding-left: 1.3rem;
-  margin: 0 0 1.1rem;
+  padding-left: 1.4rem;
+  margin: 0 0 1.4rem;
 }
 
 .prose li {
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.55rem;
+  padding-left: 0.2rem;
+}
+
+.prose li::marker {
+  color: var(--accent);
 }
 
 .prose blockquote {
-  margin: 1.4rem 0;
-  padding-left: 1.1rem;
-  border-left: 2px solid var(--line);
+  margin: 1.8rem 0;
+  padding-left: 1.2rem;
+  border-left: 2px solid var(--accent);
   color: var(--muted);
+  font-family: var(--serif);
+  font-size: 1.1em;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.prose hr {
+  border: 0;
+  height: 1px;
+  background: var(--line);
+  margin: 2.6rem 0;
 }
 
 .prose code {
