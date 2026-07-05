@@ -40,7 +40,7 @@ const fmt = (d: Date) =>
                 {note.data.description && <p class="desc">{note.data.description}</p>}
               </div>
               {thumb && (
-                <div class="note-thumb">
+                <div class={`note-thumb${note.data.type === 'video' ? ' is-video' : ''}`}>
                   <img src={thumb} alt="" loading="lazy" />
                   {note.data.type === 'video' && (
                     <span class="play" aria-hidden="true">
@@ -198,8 +198,8 @@ const fmt = (d: Date) =>
 
   .note-thumb {
     position: relative;
-    flex: 0 0 176px;
-    aspect-ratio: 16 / 9;
+    flex: 0 0 116px;
+    aspect-ratio: 4 / 5;      /* matches the carousel cover; portrait poster */
     border-radius: 6px;
     overflow: hidden;
     border: 1px solid var(--line);
@@ -210,7 +210,13 @@ const fmt = (d: Date) =>
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top center;   /* landscape/video thumbs favor the top */
     display: block;
+  }
+
+  /* Video thumbnails are 16:9; center them so the cover-crop stays balanced. */
+  .note-thumb.is-video img {
+    object-position: center;
   }
 
   .play {
@@ -238,7 +244,8 @@ const fmt = (d: Date) =>
 
     .note-thumb {
       flex: none;
-      width: 100%;
+      width: 128px;
+      align-self: flex-start;
     }
   }
 </style>

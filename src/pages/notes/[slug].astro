@@ -102,11 +102,13 @@ const mins = note.data.type === 'article' ? readingTime(note.body) : 0;
   }
 
   .cover {
-    width: 100%;
+    display: block;
+    max-width: 100%;
+    max-height: 60vh;       /* tall carousel covers become a centered poster */
+    width: auto;
+    margin: 0 auto 2rem;
     border-radius: 8px;
     border: 1px solid var(--line);
-    margin-bottom: 2rem;
-    display: block;
   }
 
   .back {
