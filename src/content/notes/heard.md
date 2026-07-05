@@ -2,6 +2,7 @@
 title: HEARD, and why the sequence matters
 date: 2026-07-04
 topic: Leadership
+image: /notes/slide1.png
 description: An upset customer wants to feel heard before they want a fix. The HEARD sequence, and why the order is doing all the work.
 ---
 
