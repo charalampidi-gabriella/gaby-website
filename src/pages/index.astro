@@ -465,6 +465,8 @@ const projects = [
     list-style: none;
     padding: 0;
     margin: 0;
+    display: grid;
+    gap: 0.7rem;
   }
 
   .note-list li {
@@ -472,7 +474,15 @@ const projects = [
     align-items: baseline;
     justify-content: space-between;
     gap: 1rem;
-    padding: 0.55rem 0;
+    padding: 0.8rem 1.1rem;
+    background: #1c1f26;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    transition: border-color 140ms ease;
+  }
+
+  .note-list li:hover {
+    border-color: rgba(167, 182, 201, 0.45);
   }
 
   .note-list a {
