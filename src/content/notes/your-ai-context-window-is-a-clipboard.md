@@ -1,6 +1,6 @@
 ---
-title: Your AI has a clipboard, not a memory
-date: 2026-07-05
+title: Your AI's context window is a clipboard
+date: 2026-07-06
 topic: AI
 description: A plain-language primer on the context window, the one idea that explains why an AI assistant feels sharp one minute and sloppy the next.
 ---

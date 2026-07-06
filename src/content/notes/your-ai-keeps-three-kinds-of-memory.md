@@ -1,6 +1,6 @@
 ---
 title: Your AI keeps three kinds of memory
-date: 2026-07-06
+date: 2026-07-05
 topic: AI
 description: "AI memory is three different tools wearing one word: a frozen encyclopedia, a temporary clipboard, and a saved notepad. Which one you are trusting tells you how much to believe the answer."
 ---
