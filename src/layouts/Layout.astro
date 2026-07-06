@@ -47,6 +47,13 @@ const ogImageAbs = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
       rel="stylesheet"
     />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BH9KVZ9R10"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-BH9KVZ9R10');
+    </script>
   </head>
   <body>
     <header class="site-header">
