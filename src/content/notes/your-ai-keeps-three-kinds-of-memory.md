@@ -2,7 +2,8 @@
 title: Your AI keeps three kinds of memory
 date: 2026-07-05
 topic: AI
-description: "AI memory is three different tools wearing one word: a frozen encyclopedia, a temporary clipboard, and a saved notepad. Which one you are trusting tells you how much to believe the answer."
+image: /notes/your-ai-keeps-three-kinds-of-memory-slide1.png
+description: 'AI memory is three different tools wearing one word: a frozen encyclopedia, a temporary clipboard, and a saved notepad. Which one you are trusting tells you how much to believe the answer.'
 ---
 
 The question sounds like a trap. If an AI can remember your name from last week, doesn't it have a memory? It does. It keeps three of them, and they work nothing alike. Knowing which one you are leaning on tells you how much to trust the answer.
@@ -15,8 +16,10 @@ The third is the sticky-note pad on the wall: the memory feature. Tell ChatGPT "
 
 So match the layer to the job. For anything time-sensitive, skip the frozen encyclopedia and paste the current fact onto the clipboard yourself. Expect one endless thread to slip, and start clean per task. And if you let the notepad remember you, open the settings and read what it wrote down. Memory is not one switch you flip. It is three tools, each with its own way of failing.
 
----
+***
+
 **Sources**
+
 - [aiagentmemory.org](https://aiagentmemory.org/articles/llm-parametric-memory/)
 - [arxiv.org](https://arxiv.org/pdf/2312.05516)
 - [openai.com](https://openai.com/index/memory-and-new-controls-for-chatgpt/)
