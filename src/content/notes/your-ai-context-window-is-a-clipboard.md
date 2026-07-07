@@ -3,6 +3,7 @@ title: Your AI's context window is a clipboard
 date: 2026-07-06
 topic: AI
 description: A plain-language primer on the context window, the one idea that explains why an AI assistant feels sharp one minute and sloppy the next.
+draft: true
 ---
 
 The AI you talk to reads from a clipboard, not a filing cabinet. Everything it can see while it answers you lives on that clipboard right now: your prompt, its instructions, the back-and-forth so far, and its own replies. When the clipboard fills up, the oldest notes fall off the edge without telling you. That single idea explains why your assistant feels sharp one minute and forgetful the next.
@@ -21,8 +22,10 @@ Before any reset command means anything, your people need this picture in their 
 
 Start a fresh session for each discrete task, a schedule, a memo, a coaching plan, rather than piling everything onto one clipboard. The commands come next. The clipboard comes first.
 
----
+***
+
 **Sources**
+
 - [ibm.com](https://www.ibm.com/think/topics/context-window)
 - [platform.claude.com](https://platform.claude.com/docs/en/build-with-claude/context-windows)
 - [docs.anthropic.com](https://docs.anthropic.com/en/docs/build-with-claude/context-windows)
