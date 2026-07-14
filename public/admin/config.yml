@@ -41,7 +41,7 @@ collections:
       - name: topic
         label: Topic
         widget: select
-        options: [Leadership, AI, Coaching]
+        options: [Leadership, AI]
         required: false
         hint: The theme this note files under. Shown as a tag and used by the notes-page filter.
       - name: video

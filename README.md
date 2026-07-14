@@ -60,7 +60,7 @@ line directly under an image renders as its caption. You can also paste a YouTub
 
 Add `draft: true` to keep a note out of the build.
 
-Notes can be filed under a theme with `topic: Leadership`, `topic: AI`, or `topic: Coaching`
+Notes can be filed under a theme with `topic: Leadership` or `topic: AI`
 (also a dropdown in the admin). The topic shows as a tag and powers the filter pills on the
 notes page. To add a new theme later, extend `TOPICS` in `src/lib/notes.ts` and the `topic`
 options list in `public/admin/config.yml`.

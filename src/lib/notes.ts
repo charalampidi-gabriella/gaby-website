@@ -1,6 +1,6 @@
 /** The editorial themes notes can be filed under. Adding one here updates the
  * schema and the notes-page filter; also add it to public/admin/config.yml. */
-export const TOPICS = ['Leadership', 'AI', 'Coaching'] as const;
+export const TOPICS = ['Leadership', 'AI'] as const;
 
 export function youtubeId(url: string): string | null {
   const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]+)/);
