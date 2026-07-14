@@ -1,7 +1,9 @@
 ---
-title: "Curiosity: ask before you defend"
+title: 'Curiosity: ask before you defend'
 date: 2026-07-13
+type: article
 topic: Leadership
+image: /notes/curiosity-ask-before-you-defend-slide1 (1).png
 description: Defending your position ends the conversation where it started. Asking a real question first is how you find out what you were missing.
 ---
 
@@ -19,12 +21,12 @@ Brené Brown makes the same point for managers, that choosing to be curious mean
 
 A team member says the new process slows them down. Defend the rollout and you keep the procedure but lose the adoption. Ask "walk me through where it slows you down" and you find the one redundant step that was souring the whole thing. A number in this week's report jumps and contradicts the story you told last month. Push back on it in the room and your team learns that only convenient numbers are safe to bring you. Ask "help me understand how this is calculated" and you find someone changed the definition, and your team learns you would rather have the real number than a flattering one.
 
-
 The openers are cheap. "Help me understand." "Tell me more." "Walk me through it." "What am I missing?" Each one trades a little status now for information you can act on, which is the better end of the deal every time.
 
 Curiosity also has a clock. It comes before the decision, not instead of it. Ask your questions, then decide, and own the decision. What you give up is the comfort of being right immediately. What you get is being right where it counts, out where the work actually happens.
 
----
+***
+
 **Sources**
 
 1. Loewenstein, information-gap theory of curiosity — [cmu.edu](https://www.cmu.edu/dietrich/sds/docs/golman/golman_loewenstein_curiosity.pdf)
