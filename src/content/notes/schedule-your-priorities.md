@@ -2,6 +2,7 @@
 title: Schedule your priorities
 date: 2026-07-18
 topic: Leadership
+image: /notes/schedule-your-priorities-slide1.png
 description: Covey's four quadrants sort work by urgent and important. The work that builds anything sits in the one quadrant that never demands your attention.
 draft: false
 ---
