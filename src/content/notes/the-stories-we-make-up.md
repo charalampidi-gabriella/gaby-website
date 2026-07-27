@@ -20,7 +20,7 @@ Brené Brown's name for that first story is blunt: the sh*tty first draft, a ter
 
 This is for the gaps that are really about another person, the moments where you have no idea what someone meant and your mind hands you an answer anyway. A silence, a curt reply, a meeting you were not invited to, and a story already forming about what it means. Watch the shape of that story. When it casts you as the victim or the failure, that is your signal you are holding a draft, not the truth.
 
-So name it to them. When you're talking to the person involved, you just say it: "the story I'm making up is that the silence means you are unhappy with me." It labels your interpretation as a guess instead of a charge, and it hands the other person the easiest possible opening to correct you. If that phrasing feels too soft for your team, try the plain version: "here is what I'm assuming, correct me."
+So name it to them. When you're talking to the person involved, you just say it: "the story I'm making up is that the silence means you are unhappy with me." It labels your interpretation as a guess instead of an accusation, and it hands the other person the easiest possible opening to correct you. If that phrasing feels too soft for your team, try the plain version: "here is what I'm assuming, correct me if I am wrong."
 
 You will not need this for every unknown, only the ones where you have quietly assigned someone a motive. And sometimes the draft turns out to be right. Ask anyway. Then you're working with something real instead of a suspicion you just keep turning over.
 
