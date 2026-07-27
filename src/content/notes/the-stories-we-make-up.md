@@ -3,7 +3,6 @@ title: "The stories we make up when we don't have the facts"
 date: 2026-07-11
 topic: Leadership
 description: When the facts are missing your brain writes a story anyway. The only question is whether you check it before you act on it.
-draft: true
 ---
 
 You flag a risk to your boss and hear nothing for two days. By the second morning you have a full idea of what happened. She thinks you are being dramatic, she is losing confidence in you and does not respect your opinion anymore. Maybe this is how getting managed out starts. Then she replies, apologetic, buried in a deadline, grateful you caught it. The whole story was fiction. You worked inside it for two days anyway, second-guessing everything you sent her.
@@ -18,13 +17,10 @@ Brené Brown's name for that first story is blunt: the sh*tty first draft, a ter
 
 ## Putting it into practice
 
-This is for the gaps that are really about another person, the moments where you have no idea what someone meant and your mind hands you an answer anyway. A silence, a curt reply, a meeting you were not invited to, and a story already forming about what it means. Watch the shape of that story. When it casts you as the victim or the failure, that is your signal you are holding a draft, not the truth.
+This is for the gaps that are really about another person, the moments where you have no idea what someone meant and your mind hands you an answer anyway. A silence, a short reply, a meeting you were not invited to, and a story already forming about what it means. The first story is going to arrive whether you invite it or not. Watch the shape of that story. When it casts you as the victim or the failure, that is your signal you are holding a draft, not the truth.
 
-So name it to them. When you're talking to the person involved, you just say it: "the story I'm making up is that the silence means you are unhappy with me." It labels your interpretation as a guess instead of an accusation, and it hands the other person the easiest possible opening to correct you. If that phrasing feels too soft for your team, try the plain version: "here is what I'm assuming, correct me if I am wrong."
+So name it to them. When you're talking to the person involved, you just say it: "the story I'm making up is that the silence means you are unhappy with me." It labels your interpretation as a guess instead of an accusation, and it hands the other person the easiest possible opening to correct you. If that phrasing feels too soft for your team, try the plain version: "here is what I'm assuming, correct me if I am wrong." And sometimes the draft turns out to be right. Ask anyway. Then you're working with something real instead of a suspicion you just keep turning over.
 
-You will not need this for every unknown, only the ones where you have quietly assigned someone a motive. And sometimes the draft turns out to be right. Ask anyway. Then you're working with something real instead of a suspicion you just keep turning over.
-
-The first story is going to arrive whether you invite it or not. Treat it the way you treat every other first draft at work: something to edit before you send it, not something to ship as is.
 
 ---
 **Sources**
