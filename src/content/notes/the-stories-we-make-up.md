@@ -16,7 +16,7 @@ Uncertainty is the part we cannot sit with. In one study, people facing a coin-f
 
 Brené Brown's name for that first story is blunt: the sh*tty first draft, a term she borrowed from the writer Anne Lamott [3]. You cannot suppress it, it shows up on its own. What you can do is notice you are holding one, because the moment you call it a draft, you stop treating it like reality.
 
-## Name your assumption, then check it
+## Putting it into practice
 
 This matters most in the situation from the opening: a gap about another person. A silence, a curt reply, a meeting you were not invited to, and a story already forming about what it means. Watch the shape of that story. When it casts you as the victim or the failure, that is your signal you are holding a draft, not the truth.
 
