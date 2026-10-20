@@ -10,65 +10,20 @@ const latest = notes.slice(0, 3);
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 
-// Each entry: the problem first, then what changed. `result` is the headline number, if any.
-const projects = [
-  {
-    name: 'Chargeback disputes',
-    tag: 'Revenue · AI agent',
-    result: '86% won',
-    problem: 'Every lost dispute was money gone.',
-    did: 'I worked out what evidence actually wins a dispute, led every case, then built an AI agent that now assembles the case for me.',
-  },
-  {
-    name: 'Pro shops and racket sales',
-    tag: 'Revenue',
-    result: '2x',
-    problem: 'Sixteen rackets sold across three clubs in the first half of 2025.',
-    did: 'I led the reorganization of all three pro shops to raise how we present to customers, and sorted every inventory item by hand myself. Thirty-six sold in the first half of 2026.',
-  },
-  {
-    name: 'Hiring and onboarding',
-    tag: 'People',
-    result: '10+ hires',
-    problem: 'There was no formal onboarding process when I joined.',
-    did: 'I hired and onboarded more than ten people and wrote the guides they learn from, one for the front desk and one for branch managers.',
-  },
-  {
-    name: 'Policy documentation',
-    tag: 'Policy',
-    problem: "Policies lived in people's heads, so the same question got a different answer depending on who was at the desk.",
-    did: 'Detailed written policies and procedures for cancellations, attendance, weather, and conduct.',
-  },
-  {
-    name: 'Booking desk toolkit',
-    tag: 'Chrome · Workers',
-    problem: 'Our booking software could not enforce our own rules, so late cancellations, rainout credits, and player notes depended on whoever was working.',
-    did: 'Twenty-six desk tools layered on top of it that apply the policy the same way every time.',
-  },
-  {
-    name: 'Inventory system',
-    tag: 'TypeScript · Cloudflare',
-    problem: 'Three clubs, one product catalog, and no reliable way to know what should be on the shelf.',
-    did: 'Counts, transfers, and register reconciliation across all three sites, with low-stock thresholds.',
-  },
-  {
-    name: 'Gift cards',
-    tag: 'TypeScript · Cloudflare',
-    problem: 'Our booking software cannot sell a gift to someone who does not have an account.',
-    did: 'A code system: the buyer pays at the desk, both people get an email, and the recipient redeems online.',
-  },
-  {
-    name: 'Racket orders',
-    tag: 'TypeScript · Cloudflare',
-    problem: 'Rackets we do not stock were ordered by hand, with nothing tracking them from the counter to pickup.',
-    did: 'Every custom order is now a ticket that moves from ordered to arrived to strung to picked up.',
-  },
-  {
-    name: 'rippnertennis.com',
-    tag: 'Next.js · Cloudflare',
-    problem: 'The old WordPress site was slow and hard to keep up to date.',
-    did: 'Rebuilt from scratch on Next.js and Cloudflare.',
-  },
+// The headline wins: one number each, read in a glance.
+const wins = [
+  { stat: '86%', label: 'Disputes won', line: 'Learned what wins, then built an AI agent to do it.' },
+  { stat: '2x', label: 'Racket sales', line: 'Led the reorganization of all three pro shops.' },
+  { stat: '10+', label: 'Hires onboarded', line: 'Built onboarding from nothing, guides included.' },
+];
+
+// Everything else: the problem, then the fix, one short line each.
+const fixes = [
+  { name: 'Policy documentation', problem: "Rules lived in people's heads.", fix: "Now they're written down." },
+  { name: 'Booking desk toolkit', problem: "Our booking software couldn't enforce our rules.", fix: 'Twenty-six tools now do.' },
+  { name: 'Inventory system', problem: 'No reliable stock count across three clubs.', fix: 'Now every item is tracked.' },
+  { name: 'Gift cards', problem: "Our booking system couldn't sell gifts.", fix: 'Now it can.' },
+  { name: 'rippnertennis.com', problem: 'The site ran on WordPress.', fix: 'Rebuilt it from scratch.' },
 ];
 
 const linkedin = 'https://www.linkedin.com/in/gabycharalampidi/';
@@ -141,22 +96,29 @@ const credentials = [
     <p class="kicker">
       Everything here started as something that broke, cost money, or lived in one person's head.
     </p>
-    <ol class="projects">
+    <dl class="wins">
       {
-        projects.map((p, i) => (
+        wins.map((w) => (
+          <div>
+            <dt>{w.stat}</dt>
+            <dd class="win-label">{w.label}</dd>
+            <dd class="win-line">{w.line}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    <ul class="fixes">
+      {
+        fixes.map((f) => (
           <li>
-            <div class="p-head">
-              <span class="num">{String(i + 1).padStart(2, '0')}</span>
-              {p.result && <span class="result">{p.result}</span>}
-            </div>
-            <h3>{p.name}</h3>
-            <p class="problem">{p.problem}</p>
-            <p class="did">{p.did}</p>
-            <span class="stack">{p.tag}</span>
+            <h3>{f.name}</h3>
+            <p>
+              <span class="problem">{f.problem}</span> {f.fix}
+            </p>
           </li>
         ))
       }
-    </ol>
+    </ul>
   </section>
 
   <section class="section" id="path">
@@ -452,82 +414,62 @@ const credentials = [
   }
 
 
-  .projects {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .wins {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+    margin: 0 0 3.2rem;
   }
 
-  /* fills the empty last cell so the grid's line colour doesn't show through */
-  .projects::after {
-    content: '';
-    background: var(--bg);
-  }
-
-  .projects li {
-    display: flex;
-    flex-direction: column;
-    background: var(--bg);
-    padding: 1.1rem 1.2rem 1.2rem;
-    transition: background 140ms ease;
-  }
-
-  .projects li:hover {
-    background: #1c1f26;
-  }
-
-  .num {
-    font-size: 0.68rem;
-    letter-spacing: 0.09em;
-    color: var(--accent);
-  }
-
-  .projects h3 {
-    font-size: 1.02rem;
-    margin: 0.35rem 0 0.3rem;
-  }
-
-  .p-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
-  .result {
+  .wins dt {
     font-family: var(--serif);
-    font-size: 1.35rem;
+    font-size: 3rem;
     line-height: 1;
     color: var(--accent);
   }
 
-  .projects .problem {
-    margin: 0 0 0.6rem;
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.45;
+  .win-label {
+    margin: 0.7rem 0 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--ink);
   }
 
-  .projects .did {
+  .win-line {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
     color: var(--muted);
   }
 
-  .stack {
-    display: block;
-    margin-top: auto;
-    padding-top: 0.8rem;
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+  .fixes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.15rem;
+  }
+
+  .fixes li {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 1.2rem;
+    align-items: baseline;
+  }
+
+  .fixes h3 {
+    font-size: 1.05rem;
+  }
+
+  .fixes p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+
+  .fixes .problem {
     color: var(--faint);
   }
 
@@ -817,12 +759,34 @@ const credentials = [
       font-size: 1.25rem;
     }
 
-    .projects {
+    .wins {
       grid-template-columns: 1fr;
+      gap: 1.3rem;
+      margin-bottom: 2.6rem;
     }
 
-    .projects::after {
-      display: none;
+    .wins > div {
+      display: grid;
+      grid-template-columns: 4.6rem 1fr;
+      column-gap: 1rem;
+    }
+
+    .wins dt {
+      grid-row: span 2;
+      font-size: 2.4rem;
+    }
+
+    .win-label {
+      margin-top: 0.15rem;
+    }
+
+    .fixes {
+      gap: 1.3rem;
+    }
+
+    .fixes li {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
     }
   }
 </style>
