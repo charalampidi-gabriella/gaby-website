@@ -2,6 +2,10 @@
  * schema and the notes-page filter; also add it to public/admin/config.yml. */
 export const TOPICS = ['Leadership', 'AI'] as const;
 
+/** The Substack publication, e.g. 'https://gabycharalampidi.substack.com'. Leave empty and
+ * the "get new notes by email" block stays hidden on note pages. */
+export const SUBSTACK_URL = '';
+
 export function youtubeId(url: string): string | null {
   const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]+)/);
   return m ? m[1] : null;

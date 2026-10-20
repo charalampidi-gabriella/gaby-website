@@ -33,6 +33,7 @@ const ogImageAbs = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="application/rss+xml" title="Gaby Charalampidi · Notes" href="/rss.xml" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={ogType} />

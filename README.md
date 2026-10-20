@@ -65,6 +65,24 @@ Notes can be filed under a theme with `topic: Leadership` or `topic: AI`
 notes page. To add a new theme later, extend `TOPICS` in `src/lib/notes.ts` and the `topic`
 options list in `public/admin/config.yml`.
 
+## RSS and Substack
+
+The full text of every published note is at `/rss.xml` (newest first, drafts excluded).
+
+The site is the original home for each note; Substack is how it goes out by email. For each note:
+
+1. Publish it here first and let it go live.
+2. A day or two later, post it on Substack. Pick one:
+   - **Teaser** (for the deeper pieces): hook and first few paragraphs, then
+     `Read the full piece →` linking to the note on the site.
+   - **Full post**: paste the whole note, with this line at the top:
+     `*Originally published on [gabycharalampidi.com](https://gabycharalampidi.com/notes/<slug>).*`
+3. Share the site's URL on LinkedIn, not the Substack one.
+
+Once the Substack publication exists, put its URL in `SUBSTACK_URL` in `src/lib/notes.ts`.
+That turns on a "Subscribe on Substack" box at the bottom of every note. It stays hidden while
+the value is empty.
+
 ## Admin (publish from the browser)
 
 The site has a Sveltia CMS admin at `/admin/` (on the dev server use `/admin/index.html`).
