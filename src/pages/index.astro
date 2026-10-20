@@ -53,7 +53,17 @@ const projects = [
   },
 ];
 
-// Paste each Credly verification link into `url`; a chip without one renders unlinked.
+const linkedin = 'https://www.linkedin.com/in/gabycharalampidi/';
+
+// The four facts under the headline: scannable in a few seconds on a phone.
+const proof = [
+  { stat: '14 months', detail: 'Branch manager to COO' },
+  { stat: '50 staff', detail: 'Three clubs, 363 days a year' },
+  { stat: 'World #245', detail: 'ITF juniors, Greek National Team' },
+  { stat: 'B.S. CS&E', detail: 'D1 tennis at Nevada' },
+];
+
+// Paste each Credly verification link into `url`; one without a link renders as plain text.
 const credentials = [
   {
     abbr: 'CAPM',
@@ -90,7 +100,22 @@ const credentials = [
     </h1>
     <p class="lede">
       COO at <a href="https://rippnertennis.com">Rippner Tennis</a>, a three-location tennis
-      operation in&nbsp;Austin.
+      operation in Austin. Former national team player, engineer by training, and the person who
+      builds most of the software the business runs&nbsp;on.
+    </p>
+    <dl class="proof">
+      {
+        proof.map((p) => (
+          <div>
+            <dt>{p.stat}</dt>
+            <dd>{p.detail}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    <p class="hero-actions">
+      <a class="btn" href={linkedin}>Connect on LinkedIn</a>
+      <a class="hero-alt" href="#contact">or send a note</a>
     </p>
   </section>
 
@@ -150,33 +175,21 @@ const credentials = [
         </p>
       </li>
     </ol>
-  </section>
-
-  <section class="section" id="credentials">
-    <h2 class="label">Credentials</h2>
-    <ul class="creds">
+    <p class="creds">
+      <span class="creds-label">Credentials</span>
       {
-        credentials.map((c) =>
-          c.url ? (
-            <li>
-              <a class="cred" href={c.url}>
-                <span class="cred-abbr">{c.abbr}</span>
-                <span class="cred-name">{c.name}</span>
-                <span class="cred-issuer">{c.issuer} &middot; Verify &rarr;</span>
-              </a>
-            </li>
-          ) : (
-            <li>
-              <div class="cred">
-                <span class="cred-abbr">{c.abbr}</span>
-                <span class="cred-name">{c.name}</span>
-                <span class="cred-issuer">{c.issuer}</span>
-              </div>
-            </li>
-          )
-        )
+        credentials.map((c, i) => (
+          <>
+            {i > 0 && <span aria-hidden="true"> &middot; </span>}
+            {c.url ? (
+              <a href={c.url} title={c.name}>{c.abbr} ({c.issuer})</a>
+            ) : (
+              <span title={c.name}>{c.abbr} ({c.issuer})</span>
+            )}
+          </>
+        ))
       }
-    </ul>
+    </p>
   </section>
 
   {
@@ -208,7 +221,7 @@ const credentials = [
     <p class="muted contact-copy">
       I like meeting people working in sports, AI, or automation, and anyone curious about what
       I'm building. Find me on
-      <a href="https://www.linkedin.com/in/gabycharalampidi/">LinkedIn</a> or
+      <a href={linkedin}>LinkedIn</a> or
       send a note here:
     </p>
     <form id="contact-form">
@@ -357,6 +370,60 @@ const credentials = [
     max-width: 32rem;
   }
 
+  .proof {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+    margin: 2rem 0 0;
+    padding: 1.2rem 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .proof dt {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    line-height: 1.15;
+    color: var(--accent);
+  }
+
+  .proof dd {
+    margin: 0.3rem 0 0;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--muted);
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.1rem;
+    margin: 1.6rem 0 0;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.65rem 1.4rem;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 120ms ease;
+  }
+
+  .btn:hover {
+    color: var(--bg);
+    opacity: 0.85;
+  }
+
+  .hero-alt {
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+
   .kicker {
     font-family: var(--serif);
     font-style: italic;
@@ -411,14 +478,14 @@ const credentials = [
 
   .projects p {
     margin: 0;
-    font-size: 0.83rem;
+    font-size: 0.9rem;
     color: var(--muted);
   }
 
   .stack {
     display: block;
     margin-top: 0.7rem;
-    font-size: 0.66rem;
+    font-size: 0.72rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--faint);
@@ -511,48 +578,16 @@ const credentials = [
   }
 
   .creds {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.9rem;
-  }
-
-  .cred {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    height: 100%;
-    padding: 1rem 1.1rem 1.05rem;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    text-decoration: none;
-    transition: border-color 140ms ease, background 140ms ease;
-  }
-
-  a.cred:hover {
-    color: inherit;
-    background: #1c1f26;
-    border-color: rgba(167, 182, 201, 0.45);
-  }
-
-  .cred-abbr {
-    font-family: var(--serif);
-    font-size: 1.45rem;
-    line-height: 1.1;
-    color: var(--accent);
-  }
-
-  .cred-name {
-    font-size: 0.88rem;
+    margin: 2.4rem 0 0;
+    font-size: 0.9rem;
     color: var(--muted);
   }
 
-  .cred-issuer {
-    margin-top: 0.35rem;
-    font-size: 0.66rem;
-    letter-spacing: 0.08em;
+  .creds-label {
+    margin-right: 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--faint);
   }
@@ -732,16 +767,22 @@ const credentials = [
       font-size: 1rem;
     }
 
+    .proof {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .proof dt {
+      font-size: 1.25rem;
+    }
+
     .projects {
       grid-template-columns: 1fr;
     }
 
     .projects::after {
       display: none;
-    }
-
-    .creds {
-      grid-template-columns: 1fr;
     }
   }
 </style>

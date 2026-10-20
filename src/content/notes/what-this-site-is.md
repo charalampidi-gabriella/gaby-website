@@ -12,4 +12,4 @@ This site is where I write about that work. Expect notes on the calls I make and
 
 Some notes will be text, some video. None of it is polished thought leadership. It is a working log.
 
-If any of it is useful to you, or you are running an operation and want to compare notes on any of the above, email me.
+If any of it is useful to you, or you are running an operation and want to compare notes on any of the above, find me on [LinkedIn](https://www.linkedin.com/in/gabycharalampidi/) or send a note through the [contact form](/#contact).
