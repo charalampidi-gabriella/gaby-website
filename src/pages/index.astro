@@ -12,34 +12,60 @@ const fmt = (d: Date) =>
 
 const projects = [
   {
-    name: 'Escalation engine',
-    stack: 'Apps Script',
-    what: 'The attendance policy, running as code.',
+    name: 'PBP Tools',
+    stack: 'Chrome · Workers',
+    what: 'Twenty-six desk tools layered on our booking software: cancellations, rainouts, attendance rules.',
   },
   {
     name: 'Inventory system',
-    stack: 'Express · LibSQL',
-    what: 'Stock, transfers, and alerts across three sites.',
+    stack: 'TypeScript · Cloudflare',
+    what: 'Counts, transfers, and register reconciliation across three sites.',
   },
   {
-    name: 'Compliance tracker',
-    stack: 'Sheets · Apps Script',
-    what: '50 staff certifications, zero manual entry.',
+    name: 'Staff onboarding',
+    stack: 'TypeScript · Cloudflare',
+    what: 'A new-hire checklist tied to certifications and the roster.',
   },
   {
-    name: 'Club extensions',
-    stack: 'Chrome',
-    what: "Bulk session, sub, and credit tools the club software doesn't ship.",
+    name: 'Gift cards',
+    stack: 'TypeScript · Cloudflare',
+    what: 'Self-serve redemption and scheduled delivery, buyer to recipient.',
+  },
+  {
+    name: 'Racket orders',
+    stack: 'TypeScript · Cloudflare',
+    what: 'Every custom order tracked from the counter to pickup.',
+  },
+  {
+    name: 'Court sheets',
+    stack: 'TypeScript · Cloudflare',
+    what: 'Class rosters that print as a court sheet per club, per day.',
+  },
+  {
+    name: 'Escalation engine',
+    stack: 'Apps Script',
+    what: 'The attendance policy, running as code.',
   },
   {
     name: 'rippnertennis.com',
     stack: 'Next.js · Cloudflare',
     what: 'The marketing site, rebuilt from WordPress.',
   },
+];
+
+// Paste each Credly verification link into `url`; a chip without one renders unlinked.
+const credentials = [
   {
-    name: 'Tools portal',
-    stack: 'Cloudflare Pages',
-    what: 'Schedulers and dashboards, one home.',
+    abbr: 'CAPM',
+    name: 'Certified Associate in Project Management',
+    issuer: 'PMI',
+    url: 'https://www.credly.com/badges/e34df230-9dd3-48f4-9af7-d648428b7f52/public_url',
+  },
+  {
+    abbr: 'PSM I',
+    name: 'Professional Scrum Master I',
+    issuer: 'Scrum.org',
+    url: 'https://www.credly.com/badges/e156c4a2-b5a7-486f-b676-78a1d701f818/public_url',
   },
 ];
 ---
@@ -96,6 +122,9 @@ const projects = [
     <p class="kicker">
       Every tool here exists because something broke, cost hours, or lived in one person's head.
     </p>
+    <p class="muted work-note">
+      Most now live in one internal platform that runs the business day to day.
+    </p>
     <ol class="projects">
       {
         projects.map((p, i) => (
@@ -144,6 +173,33 @@ const projects = [
         </p>
       </li>
     </ol>
+  </section>
+
+  <section class="section" id="credentials">
+    <h2 class="label">Credentials</h2>
+    <ul class="creds">
+      {
+        credentials.map((c) =>
+          c.url ? (
+            <li>
+              <a class="cred" href={c.url}>
+                <span class="cred-abbr">{c.abbr}</span>
+                <span class="cred-name">{c.name}</span>
+                <span class="cred-issuer">{c.issuer} &middot; Verify &rarr;</span>
+              </a>
+            </li>
+          ) : (
+            <li>
+              <div class="cred">
+                <span class="cred-abbr">{c.abbr}</span>
+                <span class="cred-name">{c.name}</span>
+                <span class="cred-issuer">{c.issuer}</span>
+              </div>
+            </li>
+          )
+        )
+      }
+    </ul>
   </section>
 
   <section class="section" id="contact">
@@ -307,6 +363,11 @@ const projects = [
     font-size: 1.25rem;
     color: var(--ink);
     max-width: 30rem;
+    margin: 0 0 0.6rem;
+  }
+
+  .work-note {
+    font-size: 0.92rem;
     margin: 0 0 2rem;
   }
 
@@ -319,6 +380,12 @@ const projects = [
     gap: 1px;
     background: var(--line);
     border: 1px solid var(--line);
+  }
+
+  /* fills the empty last cell so the grid's line colour doesn't show through */
+  .projects::after {
+    content: '';
+    background: var(--bg);
   }
 
   .projects li {
@@ -441,6 +508,53 @@ const projects = [
   .timeline li.future h3,
   .timeline li.future p:not(.tl-era) {
     opacity: 0.75;
+  }
+
+  .creds {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
+  }
+
+  .cred {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    height: 100%;
+    padding: 1rem 1.1rem 1.05rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: border-color 140ms ease, background 140ms ease;
+  }
+
+  a.cred:hover {
+    color: inherit;
+    background: #1c1f26;
+    border-color: rgba(167, 182, 201, 0.45);
+  }
+
+  .cred-abbr {
+    font-family: var(--serif);
+    font-size: 1.45rem;
+    line-height: 1.1;
+    color: var(--accent);
+  }
+
+  .cred-name {
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  .cred-issuer {
+    margin-top: 0.35rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
   }
 
   .note-list {
@@ -619,6 +733,14 @@ const projects = [
     }
 
     .projects {
+      grid-template-columns: 1fr;
+    }
+
+    .projects::after {
+      display: none;
+    }
+
+    .creds {
       grid-template-columns: 1fr;
     }
   }
