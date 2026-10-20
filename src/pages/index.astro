@@ -10,46 +10,64 @@ const latest = notes.slice(0, 3);
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 
+// Each entry: the problem first, then what changed. `result` is the headline number, if any.
 const projects = [
   {
-    name: 'PBP Tools',
-    stack: 'Chrome · Workers',
-    what: 'Twenty-six desk tools layered on our booking software: cancellations, rainouts, attendance rules.',
+    name: 'Chargeback disputes',
+    tag: 'Revenue · AI agent',
+    result: '86% won',
+    problem: 'Every lost dispute was money gone.',
+    did: 'I worked out what evidence actually wins a dispute, led every case, then built an AI agent that now assembles the case for me.',
+  },
+  {
+    name: 'Pro shops and racket sales',
+    tag: 'Revenue',
+    result: '2x',
+    problem: 'Sixteen rackets sold across three clubs in the first half of 2025.',
+    did: 'I led the reorganization of all three pro shops to raise how we present to customers, and sorted every inventory item by hand myself. Thirty-six sold in the first half of 2026.',
+  },
+  {
+    name: 'Hiring and onboarding',
+    tag: 'People',
+    result: '10+ hires',
+    problem: 'There was no formal onboarding process when I joined.',
+    did: 'I hired and onboarded more than ten people and wrote the guides they learn from, one for the front desk and one for branch managers.',
+  },
+  {
+    name: 'Policy documentation',
+    tag: 'Policy',
+    problem: "Policies lived in people's heads, so the same question got a different answer depending on who was at the desk.",
+    did: 'Detailed written policies and procedures for cancellations, attendance, weather, and conduct.',
+  },
+  {
+    name: 'Booking desk toolkit',
+    tag: 'Chrome · Workers',
+    problem: 'Our booking software could not enforce our own rules, so late cancellations, rainout credits, and player notes depended on whoever was working.',
+    did: 'Twenty-six desk tools layered on top of it that apply the policy the same way every time.',
   },
   {
     name: 'Inventory system',
-    stack: 'TypeScript · Cloudflare',
-    what: 'Counts, transfers, and register reconciliation across three sites.',
-  },
-  {
-    name: 'Staff onboarding',
-    stack: 'TypeScript · Cloudflare',
-    what: 'A new-hire checklist tied to certifications and the roster.',
+    tag: 'TypeScript · Cloudflare',
+    problem: 'Three clubs, one product catalog, and no reliable way to know what should be on the shelf.',
+    did: 'Counts, transfers, and register reconciliation across all three sites, with low-stock thresholds.',
   },
   {
     name: 'Gift cards',
-    stack: 'TypeScript · Cloudflare',
-    what: 'Self-serve redemption and scheduled delivery, buyer to recipient.',
+    tag: 'TypeScript · Cloudflare',
+    problem: 'Our booking software cannot sell a gift to someone who does not have an account.',
+    did: 'A code system: the buyer pays at the desk, both people get an email, and the recipient redeems online.',
   },
   {
     name: 'Racket orders',
-    stack: 'TypeScript · Cloudflare',
-    what: 'Every custom order tracked from the counter to pickup.',
-  },
-  {
-    name: 'Court sheets',
-    stack: 'TypeScript · Cloudflare',
-    what: 'Class rosters that print as a court sheet per club, per day.',
-  },
-  {
-    name: 'Escalation engine',
-    stack: 'Apps Script',
-    what: 'The attendance policy, running as code.',
+    tag: 'TypeScript · Cloudflare',
+    problem: 'Rackets we do not stock were ordered by hand, with nothing tracking them from the counter to pickup.',
+    did: 'Every custom order is now a ticket that moves from ordered to arrived to strung to picked up.',
   },
   {
     name: 'rippnertennis.com',
-    stack: 'Next.js · Cloudflare',
-    what: 'The marketing site, rebuilt from WordPress.',
+    tag: 'Next.js · Cloudflare',
+    problem: 'The old WordPress site was slow and hard to keep up to date.',
+    did: 'Rebuilt from scratch on Next.js and Cloudflare.',
   },
 ];
 
@@ -119,21 +137,22 @@ const credentials = [
   </section>
 
   <section class="section" id="work">
-    <h2 class="label">Things I've built</h2>
+    <h2 class="label">Problems I've solved</h2>
     <p class="kicker">
-      Every tool here exists because something broke, cost hours, or lived in one person's head.
-    </p>
-    <p class="muted work-note">
-      Most now live in one internal platform that runs the business day to day.
+      Everything here started as something that broke, cost money, or lived in one person's head.
     </p>
     <ol class="projects">
       {
         projects.map((p, i) => (
           <li>
-            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <div class="p-head">
+              <span class="num">{String(i + 1).padStart(2, '0')}</span>
+              {p.result && <span class="result">{p.result}</span>}
+            </div>
             <h3>{p.name}</h3>
-            <p>{p.what}</p>
-            <span class="stack">{p.stack}</span>
+            <p class="problem">{p.problem}</p>
+            <p class="did">{p.did}</p>
+            <span class="stack">{p.tag}</span>
           </li>
         ))
       }
@@ -429,20 +448,16 @@ const credentials = [
     font-size: 1.25rem;
     color: var(--ink);
     max-width: 30rem;
-    margin: 0 0 0.6rem;
-  }
-
-  .work-note {
-    font-size: 0.92rem;
     margin: 0 0 2rem;
   }
+
 
   .projects {
     list-style: none;
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1px;
     background: var(--line);
     border: 1px solid var(--line);
@@ -455,8 +470,10 @@ const credentials = [
   }
 
   .projects li {
+    display: flex;
+    flex-direction: column;
     background: var(--bg);
-    padding: 1rem 1.1rem 1.1rem;
+    padding: 1.1rem 1.2rem 1.2rem;
     transition: background 140ms ease;
   }
 
@@ -475,7 +492,30 @@ const credentials = [
     margin: 0.35rem 0 0.3rem;
   }
 
-  .projects p {
+  .p-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .result {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .projects .problem {
+    margin: 0 0 0.6rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+
+  .projects .did {
     margin: 0;
     font-size: 0.9rem;
     color: var(--muted);
@@ -483,7 +523,8 @@ const credentials = [
 
   .stack {
     display: block;
-    margin-top: 0.7rem;
+    margin-top: auto;
+    padding-top: 0.8rem;
     font-size: 0.72rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
