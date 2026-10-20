@@ -94,29 +94,6 @@ const credentials = [
     </p>
   </section>
 
-  {
-    latest.length > 0 && (
-      <section class="section" id="notes">
-        <h2 class="label">Latest notes</h2>
-        <ul class="note-list">
-          {latest.map((note) => (
-            <li>
-              <a href={`/notes/${note.id}`}>{note.data.title}</a>
-              <span class="note-meta">
-                {note.data.topic && <span class="topic-chip">{note.data.topic}</span>}
-                {note.data.type === 'video' && <span class="tag">Video</span>}
-                <time datetime={note.data.date.toISOString()}>{fmt(note.data.date)}</time>
-              </span>
-            </li>
-          ))}
-        </ul>
-        <p class="all-notes">
-          <a href="/notes">All notes &rarr;</a>
-        </p>
-      </section>
-    )
-  }
-
   <section class="section" id="work">
     <h2 class="label">Things I've built</h2>
     <p class="kicker">
@@ -201,6 +178,29 @@ const credentials = [
       }
     </ul>
   </section>
+
+  {
+    latest.length > 0 && (
+      <section class="section" id="notes">
+        <h2 class="label">Latest notes</h2>
+        <ul class="note-list">
+          {latest.map((note) => (
+            <li>
+              <a href={`/notes/${note.id}`}>{note.data.title}</a>
+              <span class="note-meta">
+                {note.data.topic && <span class="topic-chip">{note.data.topic}</span>}
+                {note.data.type === 'video' && <span class="tag">Video</span>}
+                <time datetime={note.data.date.toISOString()}>{fmt(note.data.date)}</time>
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p class="all-notes">
+          <a href="/notes">All notes &rarr;</a>
+        </p>
+      </section>
+    )
+  }
 
   <section class="section" id="contact">
     <h2 class="label">Contact</h2>
