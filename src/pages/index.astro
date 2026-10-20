@@ -53,7 +53,7 @@ const credentials = [
 ];
 ---
 
-<Layout title="Gaby Charalampidi" current="home">
+<Layout title="Gaby Charalampidi" current="home" wide>
   <section class="hero">
     <!-- To scale: 78x36 ft doubles court at 3.2 px/ft, net posts 3 ft outside the sidelines -->
     <svg class="court" viewBox="0 0 160 270" aria-hidden="true" fill="none">
@@ -327,7 +327,7 @@ const credentials = [
   .court {
     position: absolute;
     top: -1.5rem;
-    right: -2.5rem;
+    right: 0;
     width: 175px;
     color: var(--line);
     z-index: -1;
@@ -787,6 +787,43 @@ const credentials = [
     .fixes li {
       grid-template-columns: 1fr;
       gap: 0.2rem;
+    }
+  }
+  /* Laptop and up: the hero opens out, and each section puts its label in a
+     left rail with the content beside it, so lines run long without wrapping. */
+  @media (min-width: 900px) {
+    .hero h1 {
+      font-size: clamp(3rem, 4.6vw, 4rem);
+      max-width: 22ch;
+    }
+
+    .court {
+      width: 200px;
+    }
+
+    .lede {
+      max-width: 36rem;
+    }
+
+    .kicker {
+      max-width: 44rem;
+    }
+
+    .section {
+      display: grid;
+      grid-template-columns: 16rem minmax(0, 1fr);
+      column-gap: 3rem;
+      align-items: start;
+    }
+
+    .section > * {
+      grid-column: 2;
+    }
+
+    .section > h2.label {
+      grid-column: 1;
+      grid-row: 1 / span 20;
+      margin: 0.35rem 0 0;
     }
   }
 </style>

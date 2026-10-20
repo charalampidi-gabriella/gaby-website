@@ -5,6 +5,8 @@
   --faint: rgba(240, 235, 224, 0.6);
   --line: rgba(240, 235, 224, 0.14);
   --accent: #a7b6c9;
+  --page: 68rem; /* header, footer and the homepage */
+  --measure: 42rem; /* reading column for notes */
   --serif: 'Newsreader', Georgia, serif;
   --sans: 'Inter', -apple-system, 'Segoe UI', sans-serif;
 }
@@ -32,9 +34,13 @@ body {
 main {
   flex: 1;
   width: 100%;
-  max-width: 42rem;
+  max-width: var(--measure);
   margin: 0 auto;
   padding: 0 1.5rem;
+}
+
+body.wide main {
+  max-width: var(--page);
 }
 
 h1, h2, h3 {
@@ -64,7 +70,7 @@ a:hover {
 /* Header */
 
 .site-header {
-  max-width: 42rem;
+  max-width: var(--page);
   margin: 0 auto;
   padding: 2rem 1.5rem;
   width: 100%;
@@ -99,7 +105,7 @@ a:hover {
 /* Footer */
 
 .site-footer {
-  max-width: 42rem;
+  max-width: var(--page);
   margin: 0 auto;
   padding: 3rem 1.5rem 2.5rem;
   width: 100%;
